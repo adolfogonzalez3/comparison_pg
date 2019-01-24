@@ -1,0 +1,12 @@
+outlines:
+building_the_network.py
+building_training_op.py
+taking_action.py
+
+policy gradient scripts:
+    gabrielgarza/openai-gym-policy-gradient
+        policy_gradient_layers.py
+    Ashboy64/rl-reimplementations
+        vanilla_pg.py
+    dennybritz/reinforcement-learning
+        CliffWalk REINFORCE with Baseline Solution.ipynb
