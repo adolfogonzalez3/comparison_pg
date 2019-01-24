@@ -1,0 +1,23 @@
+Policy Gradient Main Location: POLDIR
+    gabrielgarza: gabrielgarza / openai-gym-policy-gradient
+        openai-gym-policy-gradient / policy_gradient
+    dennybritz: dennybritz / reinforcement-learning
+        reinforcement-learning / PolicyGradient
+    Ashboy64: Ashboy64 / rl-implementations
+        rl-implementations / Reimplementations / Vanilla-Policy-Gradient
+
+building the network:
+    gabrielgarza:POLDIR / policy_gradient.py: line 100
+    dennybritz:POLDIR / CliffWalk REINFORCE with Baseline Solution.ipynb: 9, 10
+    Ashboy64:POLDIR / vanilla_pg.py: line 72
+
+building training op:
+    gabrielgarza:POLDIR / policy_gradient.py: line 159
+    dennybritz:POLDIR / CliffWalk REINFORCE with Baseline Solution.ipynb: 9, 10
+    Ashboy64:POLDIR / vanilla_pg.py: line 32
+
+taking action:
+    gabrielgarza:POLDIR / policy_gradient.py: line 71
+    dennybritz:POLDIR / CliffWalk REINFORCE with Baseline Solution.ipynb: 9, 11
+    Ashboy64:POLDIR / vanilla_pg.py: line 87
+
