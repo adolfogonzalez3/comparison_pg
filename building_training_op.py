@@ -1,9 +1,14 @@
 #########################################################################################
 # gabrielgarza / openai-gym-policy-gradient 
 # policy_gradient.py
-# line # 159
+## Adolfo's Notes: Policy Update
+## R = discounted_episode_rewards_norm
+## H(logits, labels) = softmax_cross_entropy_with_logits(logits=logits, labels=labels)
+## H(logits, labels) = - summation{ labels * log(logits) }
+## loss = mean{ H(logits, labels) * R }
+### line 159
 with tf.name_scope('loss'):
-    neg_log_prob = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=Z3, labels=self.Y)
+    neg_log_prob = tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=labels)
     loss = tf.reduce_mean(neg_log_prob * self.discounted_episode_rewards_norm)  # reward guided loss
 
 with tf.name_scope('train'):
@@ -12,7 +17,12 @@ with tf.name_scope('train'):
 #########################################################################################
 # dennybritz / reinforcement-learning / PolicyGradient
 # CliffWalk REINFORCE with Baseline Solution.ipynb
-# window 9
+## Adolfo's Notes: Policy Update
+## R = self.target
+## p(a) = probability of doing action a
+## loss = -log(p(a)) * R
+## Simplest out of three; No Baseline
+### window 9
 self.action_probs = tf.squeeze(tf.nn.softmax(self.output_layer))
 self.picked_action_prob = tf.gather(self.action_probs, self.action)
 
@@ -42,7 +52,13 @@ self.loss, global_step=tf.contrib.framework.get_global_step())
 
 #########################################################################################
 # Ashboy64 / rl-reimplementations
-# line 32
+## Adolfo's Notes: Policy Update
+## advantage * e^(log(p(i)) + log(p(i-1)))
+## Uses a baseline to reduce variance; 
+## Uses a past policy network similar to DQN
+## Uses ideas from http://rll.berkeley.edu/deeprlcoursesp17/docs/lec2.pdf
+## Specifically slides 17, 18
+### line 32
 # critic
 self.value = self.build_critic()
 self.advantage = self.dicounted_rewards_placeholder - self.value
@@ -64,4 +80,4 @@ with tf.variable_scope('loss'):
     self.aloss = -tf.reduce_mean(surr)
 
 with tf.variable_scope('atrain'):
-self.atrain_op = tf.train.AdamOptimizer(self.a_lr).minimize(self.aloss)
+    self.atrain_op = tf.train.AdamOptimizer(self.a_lr).minimize(self.aloss)
